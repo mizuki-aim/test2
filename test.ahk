@@ -7,15 +7,22 @@ DebugTip(msg) {
     SetTimer () => ToolTip(), -2000
 }
 
-DebugTip "スクリプト起動OK（GetKeyState方式）"
+DebugTip "スクリプト起動OK（変数管理方式）"
 
 SetCapsLockState "AlwaysOff"
 
-; CapsLock単押しを無効化
-SC03A::return
+; CapsLock状態を変数で管理
+global capsDown := false
 
-; CapsLockが物理的に押されている時だけ有効
-#HotIf GetKeyState("SC03A", "P")
+*SC03A:: {
+    global capsDown := true
+}
+
+*SC03A Up:: {
+    global capsDown := false
+}
+
+#HotIf capsDown
 
 h::Send "{Backspace}"
 d::Send "{Delete}"
