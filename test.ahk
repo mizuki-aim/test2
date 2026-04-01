@@ -11,14 +11,14 @@ DebugTip "スクリプト起動OK"
 
 SetCapsLockState "AlwaysOff"
 
-; CapsLock状態を変数で管理（VKF0=押す、VKF2=離す）
+; CapsLock状態を変数で管理（vkF0=押す、vkF2=離す）
 global capsDown := false
 
-*VKF0SC03A:: {
+*vkF0:: {
     global capsDown := true
 }
 
-*VKF2SC03A:: {
+*vkF2:: {
     global capsDown := false
 }
 
