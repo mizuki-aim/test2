@@ -1,102 +1,67 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
+InstallKeybdHook true, true  ; 低レベルキーボードフックを強制インストール
 
 ; === デバッグ用関数 ===
 DebugTip(msg) {
     ToolTip "AHK DEBUG: " msg
-    SetTimer () => ToolTip(), -2000  ; 2秒後に消す
+    SetTimer () => ToolTip(), -2000
 }
 
 ; === 起動確認 ===
-DebugTip "スクリプト起動OK"
+DebugTip "スクリプト起動OK - F1で動作テスト"
 
 ; CapsLockのランプを常にOFFにする
-try {
-    SetCapsLockState "AlwaysOff"
-    DebugTip "SetCapsLockState OK"
-} catch as e {
-    DebugTip "SetCapsLockState エラー: " e.Message
+SetCapsLockState "AlwaysOff"
+
+; === F1テスト（AHK自体が動くか確認用） ===
+F1:: {
+    DebugTip "F1が発火！AHK自体は動いています"
 }
 
 ; === Emacs風キーバインド（CapsLock + キー） ===
 
 CapsLock & h:: {
     DebugTip "CapsLock+h 発火！"
-    try {
-        Send "{Backspace}"
-    } catch as e {
-        DebugTip "Send Backspace エラー: " e.Message
-    }
+    Send "{Backspace}"
 }
 
 CapsLock & d:: {
     DebugTip "CapsLock+d 発火！"
-    try {
-        Send "{Delete}"
-    } catch as e {
-        DebugTip "Send Delete エラー: " e.Message
-    }
+    Send "{Delete}"
 }
 
 CapsLock & b:: {
     DebugTip "CapsLock+b 発火！"
-    try {
-        Send "{Left}"
-    } catch as e {
-        DebugTip "Send Left エラー: " e.Message
-    }
+    Send "{Left}"
 }
 
 CapsLock & f:: {
     DebugTip "CapsLock+f 発火！"
-    try {
-        Send "{Right}"
-    } catch as e {
-        DebugTip "Send Right エラー: " e.Message
-    }
+    Send "{Right}"
 }
 
 CapsLock & p:: {
     DebugTip "CapsLock+p 発火！"
-    try {
-        Send "{Up}"
-    } catch as e {
-        DebugTip "Send Up エラー: " e.Message
-    }
+    Send "{Up}"
 }
 
 CapsLock & n:: {
     DebugTip "CapsLock+n 発火！"
-    try {
-        Send "{Down}"
-    } catch as e {
-        DebugTip "Send Down エラー: " e.Message
-    }
+    Send "{Down}"
 }
 
 CapsLock & a:: {
     DebugTip "CapsLock+a 発火！"
-    try {
-        Send "{Home}"
-    } catch as e {
-        DebugTip "Send Home エラー: " e.Message
-    }
+    Send "{Home}"
 }
 
 CapsLock & e:: {
     DebugTip "CapsLock+e 発火！"
-    try {
-        Send "{End}"
-    } catch as e {
-        DebugTip "Send End エラー: " e.Message
-    }
+    Send "{End}"
 }
 
 CapsLock & Space:: {
     DebugTip "CapsLock+Space 発火！"
-    try {
-        Send "{vk1Dsc029}"
-    } catch as e {
-        DebugTip "Send IME エラー: " e.Message
-    }
+    Send "{vk1Dsc029}"
 }
