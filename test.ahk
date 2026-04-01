@@ -14,6 +14,10 @@ DebugTip "スクリプト起動OK（SC03Aモード）"
 ; CapsLockのランプを常にOFFにする
 SetCapsLockState "AlwaysOff"
 
+; === CapsLock単押しを無効化（誤発火防止） ===
+SC03A::return
+SC03A Up::return
+
 ; === SC03A（CapsLockのスキャンコード）を修飾キーとして使う ===
 
 SC03A & h:: {
