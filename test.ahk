@@ -7,12 +7,21 @@ DebugTip(msg) {
     SetTimer () => ToolTip(), -2000
 }
 
-DebugTip "スクリプト起動OK（変数管理方式）"
+DebugTip "スクリプト起動OK（VKF0/F2方式）"
 
 SetCapsLockState "AlwaysOff"
 
 ; CapsLock状態を変数で管理
+; 押す時=VKF0 SC03A、離す時=VKF2 SC03A（日本語IME環境）
 global capsDown := false
+
+*VKF0SC03A:: {
+    global capsDown := true
+}
+
+*VKF2SC03A:: {
+    global capsDown := false
+}
 
 *SC03A:: {
     global capsDown := true
