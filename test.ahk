@@ -2,65 +2,29 @@
 #SingleInstance Force
 InstallKeybdHook true, true
 
-; === デバッグ用関数 ===
 DebugTip(msg) {
     ToolTip "AHK DEBUG: " msg
     SetTimer () => ToolTip(), -2000
 }
 
-; === 起動確認 ===
-DebugTip "スクリプト起動OK（SC03Aモード）"
+DebugTip "スクリプト起動OK（GetKeyState方式）"
 
-; CapsLockのランプを常にOFFにする
 SetCapsLockState "AlwaysOff"
 
-; === CapsLock単押しを無効化（誤発火防止） ===
+; CapsLock単押しを無効化
 SC03A::return
-SC03A Up::return
 
-; === SC03A（CapsLockのスキャンコード）を修飾キーとして使う ===
+; CapsLockが物理的に押されている時だけ有効
+#HotIf GetKeyState("SC03A", "P")
 
-SC03A & h:: {
-    DebugTip "CapsLock+h 発火！"
-    Send "{Backspace}"
-}
+h::Send "{Backspace}"
+d::Send "{Delete}"
+b::Send "{Left}"
+f::Send "{Right}"
+p::Send "{Up}"
+n::Send "{Down}"
+a::Send "{Home}"
+e::Send "{End}"
+Space::Send "{vk1Dsc029}"
 
-SC03A & d:: {
-    DebugTip "CapsLock+d 発火！"
-    Send "{Delete}"
-}
-
-SC03A & b:: {
-    DebugTip "CapsLock+b 発火！"
-    Send "{Left}"
-}
-
-SC03A & f:: {
-    DebugTip "CapsLock+f 発火！"
-    Send "{Right}"
-}
-
-SC03A & p:: {
-    DebugTip "CapsLock+p 発火！"
-    Send "{Up}"
-}
-
-SC03A & n:: {
-    DebugTip "CapsLock+n 発火！"
-    Send "{Down}"
-}
-
-SC03A & a:: {
-    DebugTip "CapsLock+a 発火！"
-    Send "{Home}"
-}
-
-SC03A & e:: {
-    DebugTip "CapsLock+e 発火！"
-    Send "{End}"
-}
-
-SC03A & Space:: {
-    DebugTip "CapsLock+Space 発火！"
-    Send "{vk1Dsc029}"
-}
+#HotIf
