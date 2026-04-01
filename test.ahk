@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
-InstallKeybdHook true, true  ; 低レベルキーボードフックを強制インストール
+InstallKeybdHook true, true
 
 ; === デバッグ用関数 ===
 DebugTip(msg) {
@@ -9,59 +9,54 @@ DebugTip(msg) {
 }
 
 ; === 起動確認 ===
-DebugTip "スクリプト起動OK - F1で動作テスト"
+DebugTip "スクリプト起動OK（SC03Aモード）"
 
 ; CapsLockのランプを常にOFFにする
 SetCapsLockState "AlwaysOff"
 
-; === F1テスト（AHK自体が動くか確認用） ===
-F1:: {
-    DebugTip "F1が発火！AHK自体は動いています"
-}
+; === SC03A（CapsLockのスキャンコード）を修飾キーとして使う ===
 
-; === Emacs風キーバインド（CapsLock + キー） ===
-
-CapsLock & h:: {
+SC03A & h:: {
     DebugTip "CapsLock+h 発火！"
     Send "{Backspace}"
 }
 
-CapsLock & d:: {
+SC03A & d:: {
     DebugTip "CapsLock+d 発火！"
     Send "{Delete}"
 }
 
-CapsLock & b:: {
+SC03A & b:: {
     DebugTip "CapsLock+b 発火！"
     Send "{Left}"
 }
 
-CapsLock & f:: {
+SC03A & f:: {
     DebugTip "CapsLock+f 発火！"
     Send "{Right}"
 }
 
-CapsLock & p:: {
+SC03A & p:: {
     DebugTip "CapsLock+p 発火！"
     Send "{Up}"
 }
 
-CapsLock & n:: {
+SC03A & n:: {
     DebugTip "CapsLock+n 発火！"
     Send "{Down}"
 }
 
-CapsLock & a:: {
+SC03A & a:: {
     DebugTip "CapsLock+a 発火！"
     Send "{Home}"
 }
 
-CapsLock & e:: {
+SC03A & e:: {
     DebugTip "CapsLock+e 発火！"
     Send "{End}"
 }
 
-CapsLock & Space:: {
+SC03A & Space:: {
     DebugTip "CapsLock+Space 発火！"
     Send "{vk1Dsc029}"
 }
