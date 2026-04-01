@@ -11,14 +11,13 @@ DebugTip "スクリプト起動OK"
 
 SetCapsLockState "AlwaysOff"
 
-; CapsLock状態を変数で管理（vkF0=押す、vkF2=離す）
+; CapsLock状態を変数で管理
 global capsDown := false
 
-*vkF0:: {
+; sc03Aの押下を検知し、離されるまで待つ（1ハンドラで完結）
+*sc03A:: {
     global capsDown := true
-}
-
-*vkF2:: {
+    KeyWait "sc03A"
     global capsDown := false
 }
 
