@@ -1,0 +1,18 @@
+;; Kanata設定: CapsLock → Emacs風キーバインド
+;; CapsLockを押している間だけnavレイヤーが有効になる
+
+(defsrc
+  caps a b d e f h n p spc
+)
+
+(defalias
+  cap (tap-hold 200 200 XX (layer-toggle nav))
+)
+
+(deflayer base
+  @cap a b d e f h n p spc
+)
+
+(deflayer nav
+  _  home left del end right bspc down up (arbitrary-code 41)
+)
