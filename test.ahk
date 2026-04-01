@@ -7,12 +7,11 @@ DebugTip(msg) {
     SetTimer () => ToolTip(), -2000
 }
 
-DebugTip "スクリプト起動OK（VKF0/F2方式）"
+DebugTip "スクリプト起動OK"
 
 SetCapsLockState "AlwaysOff"
 
-; CapsLock状態を変数で管理
-; 押す時=VKF0 SC03A、離す時=VKF2 SC03A（日本語IME環境）
+; CapsLock状態を変数で管理（VKF0=押す、VKF2=離す）
 global capsDown := false
 
 *VKF0SC03A:: {
@@ -23,15 +22,8 @@ global capsDown := false
     global capsDown := false
 }
 
-*SC03A:: {
-    global capsDown := true
-}
-
-*SC03A Up:: {
-    global capsDown := false
-}
-
-#HotIf capsDown
+; CapsLockが押されていて、かつCtrl/Alt/Shiftが押されていない時だけ有効
+#HotIf capsDown && !GetKeyState("Ctrl") && !GetKeyState("Alt") && !GetKeyState("Shift")
 
 h::Send "{Backspace}"
 d::Send "{Delete}"
