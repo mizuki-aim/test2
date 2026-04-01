@@ -1,33 +1,102 @@
 #Requires AutoHotkey v2.0
+#SingleInstance Force
+
+; === デバッグ用関数 ===
+DebugTip(msg) {
+    ToolTip "AHK DEBUG: " msg
+    SetTimer () => ToolTip(), -2000  ; 2秒後に消す
+}
+
+; === 起動確認 ===
+DebugTip "スクリプト起動OK"
 
 ; CapsLockのランプを常にOFFにする
-SetCapsLockState "AlwaysOff"
+try {
+    SetCapsLockState "AlwaysOff"
+    DebugTip "SetCapsLockState OK"
+} catch as e {
+    DebugTip "SetCapsLockState エラー: " e.Message
+}
 
 ; === Emacs風キーバインド（CapsLock + キー） ===
 
-; CapsLock + h → Backspace（左削除）
-CapsLock & h::Send "{Backspace}"
+CapsLock & h:: {
+    DebugTip "CapsLock+h 発火！"
+    try {
+        Send "{Backspace}"
+    } catch as e {
+        DebugTip "Send Backspace エラー: " e.Message
+    }
+}
 
-; CapsLock + d → Delete（右削除）
-CapsLock & d::Send "{Delete}"
+CapsLock & d:: {
+    DebugTip "CapsLock+d 発火！"
+    try {
+        Send "{Delete}"
+    } catch as e {
+        DebugTip "Send Delete エラー: " e.Message
+    }
+}
 
-; CapsLock + b → 左移動
-CapsLock & b::Send "{Left}"
+CapsLock & b:: {
+    DebugTip "CapsLock+b 発火！"
+    try {
+        Send "{Left}"
+    } catch as e {
+        DebugTip "Send Left エラー: " e.Message
+    }
+}
 
-; CapsLock + f → 右移動
-CapsLock & f::Send "{Right}"
+CapsLock & f:: {
+    DebugTip "CapsLock+f 発火！"
+    try {
+        Send "{Right}"
+    } catch as e {
+        DebugTip "Send Right エラー: " e.Message
+    }
+}
 
-; CapsLock + p → 上移動
-CapsLock & p::Send "{Up}"
+CapsLock & p:: {
+    DebugTip "CapsLock+p 発火！"
+    try {
+        Send "{Up}"
+    } catch as e {
+        DebugTip "Send Up エラー: " e.Message
+    }
+}
 
-; CapsLock + n → 下移動
-CapsLock & n::Send "{Down}"
+CapsLock & n:: {
+    DebugTip "CapsLock+n 発火！"
+    try {
+        Send "{Down}"
+    } catch as e {
+        DebugTip "Send Down エラー: " e.Message
+    }
+}
 
-; CapsLock + a → 行頭（Home）
-CapsLock & a::Send "{Home}"
+CapsLock & a:: {
+    DebugTip "CapsLock+a 発火！"
+    try {
+        Send "{Home}"
+    } catch as e {
+        DebugTip "Send Home エラー: " e.Message
+    }
+}
 
-; CapsLock + e → 行末（End）
-CapsLock & e::Send "{End}"
+CapsLock & e:: {
+    DebugTip "CapsLock+e 発火！"
+    try {
+        Send "{End}"
+    } catch as e {
+        DebugTip "Send End エラー: " e.Message
+    }
+}
 
-; CapsLock + Space → IME切り替え（半角/全角キー送信）
-CapsLock & Space::Send "{vk1Dsc029}"
+CapsLock & Space:: {
+    DebugTip "CapsLock+Space 発火！"
+    try {
+        Send "{vk1Dsc029}"
+    } catch as e {
+        DebugTip "Send IME エラー: " e.Message
+    }
+}
