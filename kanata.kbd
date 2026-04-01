@@ -1,18 +1,24 @@
 ;; Kanata設定: CapsLock → Emacs風キーバインド
 ;; CapsLockを押している間だけnavレイヤーが有効になる
 
+(defcfg
+  process-unmapped-keys yes
+)
+
 (defsrc
   caps a b d e f h n p spc
 )
 
 (defalias
-  cap (tap-hold 200 200 XX (layer-toggle nav))
+  ;; CapsLock単押し=何もしない(XX)、長押し=navレイヤー有効
+  cap (tap-hold 150 150 XX (layer-toggle nav))
 )
 
-(deflayer base
+(deflayer default
   @cap a b d e f h n p spc
 )
 
+;; CapsLock押しながらの各キー動作
 (deflayer nav
-  _  home left del end right bspc down up (arbitrary-code 41)
+  _    home left del end rght bspc down up kana
 )
